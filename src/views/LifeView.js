@@ -1,7 +1,15 @@
-import { Text } from "@mantine/core";
+import { DataTable } from "../components/Table/Table";
+
+const mock = [
+    {
+        day: "Dani",
+        type: "yordana@gmail.com",
+        amount: "Inspress",
+    },
+];
 
 const LifeView = () => {
-    return <Text>Life Page</Text>;
+    return <DataTable data={mock} />;
 };
 
 export default LifeView;
