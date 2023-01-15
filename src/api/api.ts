@@ -8,3 +8,20 @@ export const getData = async () => {
 
     return data.data;
 };
+
+export const addMovement = async (movement) => {
+    const date = new Date(movement.day);
+
+    const day = date.getDate();
+    const month = date.toLocaleDateString("en-US", {
+        month: "long",
+    });
+
+    const data = await axios.post(`${FIREBASE_URI}/${month}/${day}.json`, {
+        movementType: movement.movementType,
+        expenseType: movement.expenseType,
+        amount: movement.amount,
+    });
+
+    return data.data;
+};

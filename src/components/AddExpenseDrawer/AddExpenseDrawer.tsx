@@ -1,4 +1,4 @@
-import { Flex, Button, Drawer, Select } from "@mantine/core";
+import { Flex, Button, Drawer, Select, NumberInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import {
     AddMovementFormProps,
@@ -7,13 +7,20 @@ import {
 } from "./types";
 import React from "react";
 import { DatePicker } from "@mantine/dates";
+import { addMovement } from "../../api/api";
+import { useMutation, useQueryClient } from "react-query";
 
 const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
+    const queryClient = useQueryClient();
+    const { mutate } = useMutation(addMovement, {
+        onSettled: () => queryClient.invalidateQueries("data"),
+    });
+
     const form = useForm<AddMovementFormProps>({
         initialValues: {
             movementType: "expense",
             day: new Date(),
-            amount: 0,
+            amount: 1,
             expenseType: "",
         },
     });
@@ -27,7 +34,7 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                 padding="xl"
                 size="xl"
             >
-                <form onSubmit={form.onSubmit((values) => console.log(values))}>
+                <form onSubmit={form.onSubmit((values) => mutate(values))}>
                     <Flex direction="column" gap={20}>
                         <Select
                             required
@@ -57,8 +64,14 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                         <DatePicker
                             placeholder="Pick date"
                             label="Movement date"
+                            dropdownType="modal"
                             withAsterisk
                             {...form.getInputProps("day")}
+                        />
+                        <NumberInput
+                            placeholder="Enter amount"
+                            label="Amount"
+                            {...form.getInputProps("amount")}
                         />
                         <Button type="submit">Submit</Button>
                     </Flex>

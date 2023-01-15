@@ -19,7 +19,11 @@ const LifeView = () => {
                 Add Expense
             </Button>
             {isLoading && <Text>Loading...</Text>}
-            {isSuccess && <DropdownData data={data} />}
+            {isSuccess && data ? (
+                <DropdownData data={data} />
+            ) : (
+                <Text>No data</Text>
+            )}
             <AddExpenseDrawer
                 drawerVisibility={value}
                 handleDrawerClose={toggle}
