@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { useState } from "react";
 import AddExpenseDrawer from "../components/AddExpenseDrawer/AddExpenseDrawer";
 import DropdownData from "../components/Dropdown/Dropdown";
@@ -12,11 +12,9 @@ const LifeView = () => {
 
     return (
         <>
-            <Box pt={10}>
-                <Button variant="outline" fullWidth onClick={handleDrawerOpen}>
-                    Add Expense
-                </Button>
-            </Box>
+            <Button variant="outline" fullWidth onClick={handleDrawerOpen}>
+                Add Expense
+            </Button>
             <DropdownData />
             <AddExpenseDrawer
                 drawerVisibility={drawerVisibility}

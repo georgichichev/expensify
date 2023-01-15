@@ -10,9 +10,10 @@ export type ExpenseType =
     | "car"
     | "taxes"
     | "goingOut"
-    | "custom";
+    | "custom"
+    | "";
 
-export type IncomeType = "salary" | "mama" | "vouchers" | "tip";
+export type IncomeType = "salary" | "mama" | "vouchers" | "tip" | "";
 
 export type AddMovementFormProps = {
     day: Date;
