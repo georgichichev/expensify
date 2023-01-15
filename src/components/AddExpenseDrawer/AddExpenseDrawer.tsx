@@ -40,6 +40,7 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                             required
                             label="Movement type"
                             placeholder="Pick one"
+                            size="md"
                             data={[
                                 { value: "expense", label: "Expense" },
                                 { value: "income", label: "Income" },
@@ -54,6 +55,7 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                             required
                             label="Expense type"
                             placeholder="Pick one"
+                            size="md"
                             data={
                                 form.values.movementType === "expense"
                                     ? expenseTypesSelectData
@@ -65,12 +67,14 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                             placeholder="Pick date"
                             label="Movement date"
                             dropdownType="modal"
+                            size="md"
                             withAsterisk
                             {...form.getInputProps("day")}
                         />
                         <NumberInput
                             placeholder="Enter amount"
                             label="Amount"
+                            size="md"
                             {...form.getInputProps("amount")}
                         />
                         <Button type="submit">Submit</Button>
