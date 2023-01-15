@@ -23,6 +23,12 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
             amount: 1,
             expenseType: "",
         },
+        validate: {
+            amount: (value) =>
+                value <= 0 ? "Amount must be more than 0." : null,
+            expenseType: (value) =>
+                value === "" ? "Expense type cannot be empty." : null,
+        },
     });
 
     return (
