@@ -1,3 +1,4 @@
+import React from "react";
 import { Text } from "@mantine/core";
 
 const WorkView = () => {

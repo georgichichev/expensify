@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import React from "react";
 import LifeView from "../../views/LifeView";
 import WorkView from "../../views/WorkView";
 import Header from "../Header/Header";

@@ -1,5 +1,7 @@
+import React from "react";
+
 import { Tabs } from "@mantine/core";
-import { IconCoin, IconMoneybag, IconScissors } from "@tabler/icons";
+import { IconCoin, IconScissors } from "@tabler/icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +12,7 @@ const Header = () => {
         <Tabs
             value={activeTab}
             variant={"pills"}
-            onTabChange={(value) => {
+            onTabChange={(value: string) => {
                 setActiveTab(value);
                 navigate(value);
             }}
