@@ -1,7 +1,9 @@
 import { Table } from "@mantine/core";
 import React from "react";
 
-export function DataTable({ row }) {
+export function DataTable({ dayData }) {
+    const dayKeys = Object.keys(dayData);
+
     return (
         <Table>
             <thead>
@@ -11,10 +13,14 @@ export function DataTable({ row }) {
                 </tr>
             </thead>
             <tbody>
-                <tr key={row.day}>
-                    <td>{row.day}</td>
-                    <td>{row.type}</td>
-                </tr>
+                {dayKeys.map((key) => {
+                    return (
+                        <tr key={key}>
+                            <td>{dayData[key].expenseType}</td>
+                            <td>{dayData[key].amount}</td>
+                        </tr>
+                    );
+                })}
             </tbody>
         </Table>
     );

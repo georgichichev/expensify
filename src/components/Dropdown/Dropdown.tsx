@@ -1,37 +1,38 @@
 import { Accordion, Box } from "@mantine/core";
-import { db } from "../../index";
-import { collection, doc, getDocs, setDoc } from "firebase/firestore/lite";
-import React, { useEffect } from "react";
+import React from "react";
 import { DataTable } from "../Table/Table";
 
-const mock = [
-    {
-        day: "12 Jan",
-        type: "asd",
-        amount: 123,
-    },
-];
-
-const DropdownData = () => {
-    const citiesRef = collection(db, "days");
-
-    const getData = async () => {
-        const querySnapshot = await getDocs(collection(db, "days"));
-        const data = querySnapshot.docs.map((doc) => doc.data());
-
-        console.log(data);
-    };
-
-    getData();
+const DropdownData = ({ data }) => {
+    const months = Object.keys(data);
     return (
         <Box pt={10}>
             <Accordion defaultValue={""}>
-                {mock.map((day) => {
+                {months.map((month) => {
                     return (
-                        <Accordion.Item key={day.day} value={day.day}>
-                            <Accordion.Control>{day.day}</Accordion.Control>
+                        <Accordion.Item key={month} value={month}>
+                            <Accordion.Control>{month}</Accordion.Control>
                             <Accordion.Panel>
-                                <DataTable row={day} />
+                                <Accordion defaultValue={""}>
+                                    {Object.keys(data[month]).map((day) => {
+                                        return (
+                                            <Accordion.Item
+                                                key={day}
+                                                value={day}
+                                            >
+                                                <Accordion.Control>
+                                                    {day}
+                                                </Accordion.Control>
+                                                <Accordion.Panel>
+                                                    <DataTable
+                                                        dayData={
+                                                            data[month][day]
+                                                        }
+                                                    />
+                                                </Accordion.Panel>
+                                            </Accordion.Item>
+                                        );
+                                    })}
+                                </Accordion>
                             </Accordion.Panel>
                         </Accordion.Item>
                     );

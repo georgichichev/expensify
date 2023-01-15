@@ -1,24 +1,28 @@
 import React from "react";
-import { Button } from "@mantine/core";
-import { useState } from "react";
+import { Button, Text } from "@mantine/core";
 import AddExpenseDrawer from "../components/AddExpenseDrawer/AddExpenseDrawer";
 import DropdownData from "../components/Dropdown/Dropdown";
+import { useQuery } from "react-query";
+import { getData } from "../api/api";
+import { useToggle } from "@mantine/hooks";
 
 const LifeView = () => {
-    const [drawerVisibility, setdrawerVisibility] = useState(false);
+    const [value, toggle] = useToggle();
 
-    const handleDrawerOpen = () => setdrawerVisibility(true);
-    const handleDrawerClose = () => setdrawerVisibility(false);
+    const { data, isLoading, isSuccess } = useQuery("data", getData, {
+        refetchOnWindowFocus: false,
+    });
 
     return (
         <>
-            <Button variant="outline" fullWidth onClick={handleDrawerOpen}>
+            <Button variant="outline" fullWidth onClick={() => toggle()}>
                 Add Expense
             </Button>
-            <DropdownData />
+            {isLoading && <Text>Loading...</Text>}
+            {isSuccess && <DropdownData data={data} />}
             <AddExpenseDrawer
-                drawerVisibility={drawerVisibility}
-                handleDrawerClose={handleDrawerClose}
+                drawerVisibility={value}
+                handleDrawerClose={toggle}
             />
         </>
     );

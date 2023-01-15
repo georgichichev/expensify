@@ -3,10 +3,11 @@ import React from "react";
 import LifeView from "../../views/LifeView";
 import WorkView from "../../views/WorkView";
 import Header from "../Header/Header";
+import { Container } from "@mantine/core";
 
 const AppRouter = () => {
     return (
-        <>
+        <Container>
             <BrowserRouter>
                 <Header />
                 <Routes>
@@ -15,7 +16,7 @@ const AppRouter = () => {
                     <Route path="/work" element={<WorkView />} />
                 </Routes>
             </BrowserRouter>
-        </>
+        </Container>
     );
 };
 

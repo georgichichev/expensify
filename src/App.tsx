@@ -1,17 +1,20 @@
 import React from "react";
-import { Container, MantineProvider } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 import "./App.css";
 import AppRouter from "./components/AppRouter/AppRouter";
+import { theme } from "./theme";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
 function App() {
+    const queryClient = new QueryClient();
+
     return (
-        <MantineProvider
-            theme={{ colorScheme: "dark", primaryColor: "teal" }}
-            withGlobalStyles
-        >
-            <Container>
+        <MantineProvider theme={theme} withGlobalStyles>
+            <QueryClientProvider client={queryClient}>
                 <AppRouter />
-            </Container>
+                <ReactQueryDevtools initialIsOpen={false} />
+            </QueryClientProvider>
         </MantineProvider>
     );
 }
