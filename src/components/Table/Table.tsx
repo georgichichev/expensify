@@ -1,5 +1,9 @@
 import { Table } from "@mantine/core";
-import { IconArrowDownCircle, IconArrowUpCircle } from "@tabler/icons";
+import {
+    IconArrowDownCircle,
+    IconArrowUpCircle,
+    // IconTrash,
+} from "@tabler/icons";
 import React from "react";
 
 export function DataTable({ dayData }) {
@@ -31,6 +35,11 @@ export function DataTable({ dayData }) {
                                     <IconArrowDownCircle color="red" />
                                 )}
                             </td>
+                            {/* <td style={{ textAlign: "center" }}>
+                                <ActionIcon style={{ alignSelf: "center" }}>
+                                    <IconTrash />
+                                </ActionIcon>
+                            </td> */}
                         </tr>
                     );
                 })}
