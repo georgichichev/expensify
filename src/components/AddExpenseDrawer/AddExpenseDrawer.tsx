@@ -20,6 +20,7 @@ import { showNotification } from "@mantine/notifications";
 const successNotification = {
     title: "Successful addition",
     message: "You successfully added a new money movement!",
+    color: "green",
 };
 
 const rejectNotification = {
