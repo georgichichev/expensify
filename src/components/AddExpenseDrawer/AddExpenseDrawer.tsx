@@ -9,10 +9,33 @@ import React from "react";
 import { DatePicker } from "@mantine/dates";
 import { addMovement } from "../../api/api";
 import { useMutation, useQueryClient } from "react-query";
+import {
+    IconCalendar,
+    IconChecklist,
+    IconCoin,
+    IconReportMoney,
+} from "@tabler/icons";
+import { showNotification } from "@mantine/notifications";
+
+const successNotification = {
+    title: "Successful addition",
+    message: "You successfully added a new money movement!",
+};
+
+const rejectNotification = {
+    title: "Unsuccessful addition",
+    message: "Something went wrong!",
+    color: "red",
+};
 
 const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
     const queryClient = useQueryClient();
-    const { mutate } = useMutation(addMovement, {
+    const { mutate, isLoading } = useMutation(addMovement, {
+        onSuccess: () => {
+            showNotification(successNotification);
+            form.reset();
+        },
+        onError: () => showNotification(rejectNotification),
         onSettled: () => queryClient.invalidateQueries("data"),
     });
 
@@ -47,6 +70,10 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                             label="Movement type"
                             placeholder="Pick one"
                             size="md"
+                            transition="slide-right"
+                            transitionDuration={180}
+                            transitionTimingFunction="ease"
+                            icon={<IconReportMoney />}
                             data={[
                                 { value: "expense", label: "Expense" },
                                 { value: "income", label: "Income" },
@@ -62,6 +89,12 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                             label="Expense type"
                             placeholder="Pick one"
                             size="md"
+                            transition="slide-right"
+                            transitionDuration={180}
+                            transitionTimingFunction="ease"
+                            icon={<IconChecklist />}
+                            maxDropdownHeight={215}
+                            dropdownComponent="div"
                             data={
                                 form.values.movementType === "expense"
                                     ? expenseTypesSelectData
@@ -74,16 +107,22 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                             label="Movement date"
                             dropdownType="modal"
                             size="md"
+                            icon={<IconCalendar />}
                             withAsterisk
                             {...form.getInputProps("day")}
                         />
                         <NumberInput
                             placeholder="Enter amount"
+                            precision={2}
                             label="Amount"
+                            withAsterisk
+                            icon={<IconCoin />}
                             size="md"
                             {...form.getInputProps("amount")}
                         />
-                        <Button type="submit">Submit</Button>
+                        <Button loading={isLoading} type="submit">
+                            Submit
+                        </Button>
                     </Flex>
                 </form>
             </Drawer>

@@ -18,12 +18,12 @@ const LifeView = () => {
             <Button variant="outline" fullWidth onClick={() => toggle()}>
                 Add Expense
             </Button>
-            {isLoading && <Text>Loading...</Text>}
-            {isSuccess && data ? (
-                <DropdownData data={data} />
-            ) : (
-                <Text>No data</Text>
+            {isLoading && (
+                <Text size="xl" ta="center">
+                    Loading...
+                </Text>
             )}
+            {isSuccess && <DropdownData data={data} />}
             <AddExpenseDrawer
                 drawerVisibility={value}
                 handleDrawerClose={toggle}

@@ -1,8 +1,16 @@
-import { Accordion, Box } from "@mantine/core";
+import { Accordion, Box, Text } from "@mantine/core";
 import React from "react";
 import { DataTable } from "../Table/Table";
 
 const DropdownData = ({ data }) => {
+    if (!data) {
+        return (
+            <Text size="xl" ta="center">
+                No data
+            </Text>
+        );
+    }
+
     const months = Object.keys(data);
     return (
         <Box pt={10}>
