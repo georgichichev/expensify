@@ -1,8 +1,11 @@
 import { Accordion, Box, Text } from "@mantine/core";
+import { dayNameExtractor } from "../../util/util";
 import React from "react";
 import { DataTable } from "../Table/Table";
 
 const DropdownData = ({ data }) => {
+    console.log(data);
+
     if (!data) {
         return (
             <Text size="xl" ta="center">
@@ -28,7 +31,10 @@ const DropdownData = ({ data }) => {
                                                 value={day}
                                             >
                                                 <Accordion.Control>
-                                                    {day}
+                                                    {dayNameExtractor(
+                                                        day,
+                                                        month
+                                                    )}
                                                 </Accordion.Control>
                                                 <Accordion.Panel>
                                                     <DataTable
