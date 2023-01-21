@@ -3,13 +3,13 @@ import { Button, Text } from "@mantine/core";
 import AddExpenseDrawer from "../components/AddExpenseDrawer/AddExpenseDrawer";
 import DropdownData from "../components/Dropdown/Dropdown";
 import { useQuery } from "react-query";
-import { getData } from "../api/api";
+import { getLifeData } from "../api/api";
 import { useToggle } from "@mantine/hooks";
 
 const LifeView = () => {
     const [value, toggle] = useToggle();
 
-    const { data, isLoading, isSuccess } = useQuery("data", getData, {
+    const { data, isLoading, isSuccess } = useQuery("data", getLifeData, {
         refetchOnWindowFocus: false,
     });
 

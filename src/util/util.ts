@@ -32,14 +32,12 @@ export const monthConverter = (month: string) => {
 export const dayNameExtractor = (day: string, month: string) => {
     const monthValue = monthConverter(month);
 
-    const dayWithName = new Date(
-        2023,
-        monthValue,
-        Number(day)
-    ).toLocaleDateString("bg-BG", {
-        day: "numeric",
-        weekday: "long",
-    });
+    const dayName = new Date(2023, monthValue, Number(day)).toLocaleDateString(
+        "bg-BG",
+        {
+            weekday: "long",
+        }
+    );
 
-    return dayWithName;
+    return `${day}, ${dayName}`;
 };

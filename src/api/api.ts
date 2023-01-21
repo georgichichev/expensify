@@ -1,15 +1,16 @@
+import { AddMovementFormProps } from "@server/components/AddExpenseDrawer/types";
 import axios from "axios";
 
 const FIREBASE_URI =
-    "https://expensify-44a40-default-rtdb.europe-west1.firebasedatabase.app/data";
+    "https://expensify-44a40-default-rtdb.europe-west1.firebasedatabase.app";
 
-export const getData = async () => {
-    const data = await axios.get(`${FIREBASE_URI}.json`);
+export const getLifeData = async () => {
+    const data = await axios.get(`${FIREBASE_URI}/life.json`);
 
     return data.data;
 };
 
-export const addMovement = async (movement) => {
+export const addMovement = async (movement: AddMovementFormProps) => {
     const date = new Date(movement.day);
 
     const day = date.getDate();

@@ -4,8 +4,6 @@ import React from "react";
 import { DataTable } from "../Table/Table";
 
 const DropdownData = ({ data }) => {
-    console.log(data);
-
     if (!data) {
         return (
             <Text size="xl" ta="center">
@@ -23,7 +21,7 @@ const DropdownData = ({ data }) => {
                         <Accordion.Item key={month} value={month}>
                             <Accordion.Control>{month}</Accordion.Control>
                             <Accordion.Panel>
-                                <Accordion defaultValue={""}>
+                                <Accordion defaultValue={null}>
                                     {Object.keys(data[month]).map((day) => {
                                         return (
                                             <Accordion.Item
