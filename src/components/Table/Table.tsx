@@ -42,7 +42,7 @@ export function DataTable({ dayData, day, month }) {
     });
 
     return (
-        <Table>
+        <Table fontSize={13} horizontalSpacing={10}>
             <thead>
                 <tr>
                     <Th>Expense</Th>
@@ -59,9 +59,15 @@ export function DataTable({ dayData, day, month }) {
                             <Td>{`${dayData[key].amount} лв`}</Td>
                             <Td>
                                 {dayData[key].movementType === "income" ? (
-                                    <IconArrowUpCircle color="green" />
+                                    <IconArrowUpCircle
+                                        size={20}
+                                        color="green"
+                                    />
                                 ) : (
-                                    <IconArrowDownCircle color="red" />
+                                    <IconArrowDownCircle
+                                        size={20}
+                                        color="red"
+                                    />
                                 )}
                             </Td>
                             <Td>
@@ -72,7 +78,7 @@ export function DataTable({ dayData, day, month }) {
                                     loading={isLoading}
                                     style={{ alignSelf: "center" }}
                                 >
-                                    <IconTrash />
+                                    <IconTrash size={20} />
                                 </ActionIcon>
                             </Td>
                         </tr>

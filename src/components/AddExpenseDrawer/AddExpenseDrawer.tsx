@@ -37,7 +37,7 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
             form.reset();
         },
         onError: () => showNotification(rejectNotification),
-        onSettled: () => queryClient.invalidateQueries("data"),
+        onSettled: () => queryClient.invalidateQueries("life"),
     });
 
     const form = useForm<AddMovementFormProps>({
@@ -115,6 +115,7 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                         <NumberInput
                             placeholder="Enter amount"
                             precision={2}
+                            step={0.1}
                             label="Amount"
                             withAsterisk
                             icon={<IconCoin />}

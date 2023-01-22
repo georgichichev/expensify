@@ -9,7 +9,7 @@ import { useToggle } from "@mantine/hooks";
 const LifeView = () => {
     const [value, toggle] = useToggle();
 
-    const { data, isLoading, isSuccess } = useQuery("data", getLifeData, {
+    const { data, isLoading, isSuccess } = useQuery("life", getLifeData, {
         refetchOnWindowFocus: false,
     });
 
