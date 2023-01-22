@@ -39,6 +39,8 @@ const DropdownData = ({ data }) => {
                                                         dayData={
                                                             data[month][day]
                                                         }
+                                                        day={day}
+                                                        month={month}
                                                     />
                                                 </Accordion.Panel>
                                             </Accordion.Item>
