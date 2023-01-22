@@ -1,10 +1,11 @@
 import React from "react";
-import { Button, Text } from "@mantine/core";
+import { Button, Loader } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
 import { useQuery } from "react-query";
 import DropdownData from "../components/Dropdown/Dropdown";
 import AddWorkDrawer from "../components/AddWorkDrawer/AddWorkDrawer";
 import { getWorkData } from "../api/api";
+import { Center } from "@mantine/core";
 
 const WorkView = () => {
     const [value, toggle] = useToggle();
@@ -16,14 +17,14 @@ const WorkView = () => {
     return (
         <>
             <Button variant="outline" fullWidth onClick={() => toggle()}>
-                Add Work
+                Добави клиент
             </Button>
             {isLoading && (
-                <Text size="xl" ta="center">
-                    Loading...
-                </Text>
+                <Center w="100%" pt={200}>
+                    <Loader m="auto" color="pink" />
+                </Center>
             )}
-            {isSuccess && <DropdownData data={data} />}
+            {isSuccess && <DropdownData dataType="work" data={data} />}
             <AddWorkDrawer
                 drawerVisibility={value}
                 handleDrawerClose={toggle}

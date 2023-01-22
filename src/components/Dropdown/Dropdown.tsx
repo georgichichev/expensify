@@ -1,9 +1,15 @@
 import { Accordion, Box, Text } from "@mantine/core";
 import { dayNameExtractor } from "../../util/util";
 import React from "react";
-import { DataTable } from "../Table/Table";
+import { WorkTable } from "../Tables/WorkTable/WorkTable";
+import { LifeTable } from "../Tables/LifeTable/LifeTable";
 
-const DropdownData = ({ data }) => {
+type DropDownProps = {
+    data: object;
+    dataType: "life" | "work";
+};
+
+const DropdownData = ({ data, dataType }: DropDownProps) => {
     if (!data) {
         return (
             <Text size="xl" ta="center">
@@ -35,13 +41,23 @@ const DropdownData = ({ data }) => {
                                                     )}
                                                 </Accordion.Control>
                                                 <Accordion.Panel>
-                                                    <DataTable
-                                                        dayData={
-                                                            data[month][day]
-                                                        }
-                                                        day={day}
-                                                        month={month}
-                                                    />
+                                                    {dataType === "work" ? (
+                                                        <WorkTable
+                                                            dayData={
+                                                                data[month][day]
+                                                            }
+                                                            day={day}
+                                                            month={month}
+                                                        />
+                                                    ) : (
+                                                        <LifeTable
+                                                            dayData={
+                                                                data[month][day]
+                                                            }
+                                                            day={day}
+                                                            month={month}
+                                                        />
+                                                    )}
                                                 </Accordion.Panel>
                                             </Accordion.Item>
                                         );

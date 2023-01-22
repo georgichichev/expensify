@@ -11,22 +11,27 @@ import { addMovement } from "../../api/api";
 import { useMutation, useQueryClient } from "react-query";
 import {
     IconCalendar,
+    IconCheck,
     IconChecklist,
     IconCoin,
     IconReportMoney,
+    IconX,
 } from "@tabler/icons";
+import "dayjs/locale/bg";
 import { showNotification } from "@mantine/notifications";
 
 const successNotification = {
-    title: "Successful addition",
-    message: "You successfully added a new money movement!",
-    color: "green",
+    title: "Успешно добавяне",
+    message: "Успешно добави нова трансакция.",
+    color: "teal",
+    icon: <IconCheck />,
 };
 
 const rejectNotification = {
-    title: "Unsuccessful addition",
-    message: "Something went wrong!",
+    title: "Нещо се обърка :(",
+    message: "Кажи ми, като се прибереш, за да го оправя :)",
     color: "red",
+    icon: <IconX />,
 };
 
 const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
@@ -49,9 +54,9 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
         },
         validate: {
             amount: (value) =>
-                value <= 0 ? "Amount must be more than 0." : null,
+                value <= 0 ? "Стойността трябва да е повече от 0." : null,
             expenseType: (value) =>
-                value === "" ? "Expense type cannot be empty." : null,
+                value === "" ? "Типът не може да е празен." : null,
         },
     });
 
@@ -60,7 +65,7 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
             <Drawer
                 opened={drawerVisibility}
                 onClose={handleDrawerClose}
-                title="Add movement"
+                title="Добави движение"
                 padding="xl"
                 size="xl"
             >
@@ -68,16 +73,16 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                     <Flex direction="column" gap={20}>
                         <Select
                             required
-                            label="Movement type"
-                            placeholder="Pick one"
+                            label="Вид движение"
+                            placeholder="Избери едно"
                             size="md"
                             transition="slide-right"
                             transitionDuration={180}
                             transitionTimingFunction="ease"
                             icon={<IconReportMoney />}
                             data={[
-                                { value: "expense", label: "Expense" },
-                                { value: "income", label: "Income" },
+                                { value: "expense", label: "Разход" },
+                                { value: "income", label: "Приход" },
                             ]}
                             onChange={(e) => {
                                 form.getInputProps("movementType").onChange(e);
@@ -87,8 +92,8 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                         />
                         <Select
                             required
-                            label="Expense type"
-                            placeholder="Pick one"
+                            label="Тип"
+                            placeholder="Избери едно"
                             size="md"
                             transition="slide-right"
                             transitionDuration={180}
@@ -104,16 +109,17 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                             {...form.getInputProps("expenseType")}
                         />
                         <DatePicker
-                            placeholder="Pick date"
-                            label="Movement date"
+                            placeholder="Избери дата"
+                            label="Дата на движение"
                             dropdownType="modal"
                             size="md"
+                            locale="bg"
                             icon={<IconCalendar />}
                             withAsterisk
                             {...form.getInputProps("day")}
                         />
                         <NumberInput
-                            placeholder="Enter amount"
+                            placeholder="Добави стойност"
                             precision={2}
                             step={0.1}
                             label="Amount"
@@ -123,7 +129,7 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                             {...form.getInputProps("amount")}
                         />
                         <Button loading={isLoading} type="submit">
-                            Submit
+                            Добави
                         </Button>
                     </Flex>
                 </form>

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
     const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState("life");
+    const [activeTab, setActiveTab] = useState("work");
     return (
         <Box py={10}>
             <Tabs
@@ -19,11 +19,11 @@ const Header = () => {
                 }}
             >
                 <Tabs.List grow>
-                    <Tabs.Tab value="life" icon={<IconCoin />}>
-                        Life
-                    </Tabs.Tab>
                     <Tabs.Tab value="work" icon={<IconScissors />}>
                         Work
+                    </Tabs.Tab>
+                    <Tabs.Tab value="life" icon={<IconCoin />}>
+                        Life
                     </Tabs.Tab>
                 </Tabs.List>
             </Tabs>

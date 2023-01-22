@@ -22,21 +22,36 @@ export type AddMovementFormProps = {
 };
 
 export const expenseTypesSelectData = [
-    { value: "food", label: "Food" },
-    { value: "cosmetics", label: "Cosmetics" },
-    { value: "restaurant", label: "Restaurant" },
-    { value: "clothes", label: "Clothes" },
-    { value: "medicine", label: "Medicine" },
-    { value: "fuel", label: "Fuel" },
-    { value: "car", label: "Car" },
-    { value: "taxes", label: "Taxes" },
-    { value: "goingOut", label: "Going out" },
-    { value: "custom", label: "Custom" },
+    { value: "food", label: "Храна" },
+    { value: "restaurant", label: "Ресторант" },
+    { value: "clothes", label: "Дрехи" },
+    { value: "fuel", label: "Гориво" },
+    { value: "cosmetics", label: "Козметика" },
+    { value: "medicine", label: "Лекарства" },
+    { value: "car", label: "Кола" },
+    { value: "taxes", label: "Сметки" },
+    { value: "goingOut", label: "Излизанка" },
 ];
 
 export const incomeTypesSelectData = [
-    { value: "salary", label: "Salary" },
-    { value: "mama", label: "Mama" },
-    { value: "vouchers", label: "Vouchers" },
-    { value: "tip", label: "Tip" },
+    { value: "salary", label: "Заплата" },
+    { value: "mama", label: "От мама" },
+    { value: "vouchers", label: "Ваучери" },
+    { value: "tip", label: "Бакшиш" },
 ];
+
+export const expenseTypeKeys = {
+    food: "Храна",
+    cosmetics: "Козметика",
+    restaurant: "Ресторант",
+    clothes: "Дрехи",
+    medicine: "Лекарства",
+    fuel: "Гориво",
+    car: "Кола",
+    taxes: "Сметки",
+    goingOut: "Излизанка",
+    salary: "Заплата",
+    mama: "От мама",
+    vouchers: "Ваучери",
+    tip: "Бакшиш",
+};

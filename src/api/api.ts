@@ -1,7 +1,7 @@
 import { AddMovementFormProps } from "@server/components/AddExpenseDrawer/types";
 import { AddWorkFormProps } from "@server/components/AddWorkDrawer/types";
 import axios from "axios";
-import { DeleteMovementProps } from "./types";
+import { DeleteItemProps } from "./types";
 
 const FIREBASE_URI =
     "https://expensify-44a40-default-rtdb.europe-west1.firebasedatabase.app";
@@ -29,12 +29,15 @@ export const addMovement = async (movement: AddMovementFormProps) => {
     return data.data;
 };
 
-export const deleteMovement = async ({
+export const deleteItem = async ({
     month,
     day,
     id,
-}: DeleteMovementProps) => {
-    await axios.delete(`${FIREBASE_URI}/life/${month}/${day}/${id}.json`);
+    dataType,
+}: DeleteItemProps) => {
+    await axios.delete(
+        `${FIREBASE_URI}/${dataType}/${month}/${day}/${id}.json`
+    );
 
     return null;
 };

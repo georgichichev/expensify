@@ -11,7 +11,7 @@ const AppRouter = () => {
             <BrowserRouter>
                 <Header />
                 <Routes>
-                    <Route path="/" element={<Navigate to="/life" />} />
+                    <Route path="/" element={<Navigate to="/work" />} />
                     <Route path="/life" element={<LifeView />} />
                     <Route path="/work" element={<WorkView />} />
                 </Routes>

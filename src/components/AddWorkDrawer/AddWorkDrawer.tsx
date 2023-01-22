@@ -16,8 +16,8 @@ import {
     IconCalendar,
     IconCheck,
     IconCoin,
+    IconFileScissors,
     IconPigMoney,
-    IconReportMoney,
     IconWoman,
     IconX,
 } from "@tabler/icons";
@@ -43,6 +43,7 @@ const AddWorkDrawer = ({ drawerVisibility, handleDrawerClose }) => {
     const { mutate, isLoading } = useMutation(addWork, {
         onSuccess: () => {
             showNotification(successNotification);
+            handleDrawerClose();
             form.reset();
         },
         onError: () => showNotification(rejectNotification),
@@ -93,7 +94,7 @@ const AddWorkDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                             transition="slide-right"
                             transitionDuration={180}
                             transitionTimingFunction="ease"
-                            icon={<IconReportMoney />}
+                            icon={<IconFileScissors />}
                             data={workTypesSelectData}
                             {...form.getInputProps("workType")}
                         />

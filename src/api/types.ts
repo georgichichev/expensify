@@ -3,8 +3,9 @@ export type GetDataProps = {
     day: string;
 };
 
-export type DeleteMovementProps = {
+export type DeleteItemProps = {
     day: string;
     month: string;
     id: string;
+    dataType: "work" | "life";
 };

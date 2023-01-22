@@ -1,4 +1,4 @@
-export type WorkType = "cut" | "color" | "blow-dry";
+export type WorkType = "cut" | "color" | "blowDry";
 
 export type AddWorkFormProps = {
     client: string;
@@ -13,3 +13,9 @@ export const workTypesSelectData = [
     { value: "color", label: "Боядисване" },
     { value: "blowDry", label: "Изсушаване" },
 ];
+
+export const workTypeKeys = {
+    cut: "Подстр.",
+    color: "Боя",
+    blowDry: "Изсуш.",
+};

@@ -1,53 +1,35 @@
 import { ActionIcon, Table } from "@mantine/core";
-import { deleteMovement } from "../../api/api";
+import { deleteItem } from "../../../api/api";
 import {
     IconArrowDownCircle,
     IconArrowUpCircle,
     IconTrash,
 } from "@tabler/icons";
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { showNotification } from "@mantine/notifications";
+import { rejectNotification, successNotification, Td, Th } from "../components";
+import { expenseTypeKeys } from "../../AddExpenseDrawer/types";
 
-const Th = ({ children }: PropsWithChildren) => {
-    return <th style={{ textAlign: "center" }}>{children}</th>;
-};
-
-const Td = ({ children }: PropsWithChildren) => {
-    return <td style={{ textAlign: "center" }}>{children}</td>;
-};
-
-const successNotification = {
-    title: "Successful delete",
-    message: "You successfully deleted a movement!",
-    color: "green",
-};
-
-const rejectNotification = {
-    title: "Unsuccessful delete",
-    message: "Something went wrong!",
-    color: "red",
-};
-
-export function DataTable({ dayData, day, month }) {
+export function LifeTable({ dayData, day, month }) {
     const dayKeys = Object.keys(dayData);
     const queryClient = useQueryClient();
 
-    const { mutate, isLoading } = useMutation(deleteMovement, {
+    const { mutate, isLoading } = useMutation(deleteItem, {
         onSuccess: () => {
             showNotification(successNotification);
         },
         onError: () => showNotification(rejectNotification),
-        onSettled: () => queryClient.invalidateQueries("data"),
+        onSettled: () => queryClient.invalidateQueries("life"),
     });
 
     return (
         <Table fontSize={13} horizontalSpacing={10}>
             <thead>
                 <tr>
-                    <Th>Expense</Th>
-                    <Th>Amount</Th>
-                    <Th>Movement</Th>
+                    <Th>Вид</Th>
+                    <Th>Стойност</Th>
+                    <Th>Тип</Th>
                     <Th />
                 </tr>
             </thead>
@@ -55,17 +37,17 @@ export function DataTable({ dayData, day, month }) {
                 {dayKeys.map((key) => {
                     return (
                         <tr key={key}>
-                            <Td>{dayData[key].expenseType}</Td>
+                            <Td>{expenseTypeKeys[dayData[key].expenseType]}</Td>
                             <Td>{`${dayData[key].amount} лв`}</Td>
                             <Td>
                                 {dayData[key].movementType === "income" ? (
                                     <IconArrowUpCircle
-                                        size={20}
+                                        size={15}
                                         color="green"
                                     />
                                 ) : (
                                     <IconArrowDownCircle
-                                        size={20}
+                                        size={15}
                                         color="red"
                                     />
                                 )}
@@ -73,12 +55,17 @@ export function DataTable({ dayData, day, month }) {
                             <Td>
                                 <ActionIcon
                                     onClick={() =>
-                                        mutate({ month, day, id: key })
+                                        mutate({
+                                            month,
+                                            day,
+                                            id: key,
+                                            dataType: "life",
+                                        })
                                     }
                                     loading={isLoading}
                                     style={{ alignSelf: "center" }}
                                 >
-                                    <IconTrash size={20} />
+                                    <IconTrash size={15} />
                                 </ActionIcon>
                             </Td>
                         </tr>

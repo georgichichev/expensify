@@ -1,10 +1,11 @@
 import React from "react";
-import { Button, Text } from "@mantine/core";
+import { Button, Center } from "@mantine/core";
 import AddExpenseDrawer from "../components/AddExpenseDrawer/AddExpenseDrawer";
 import DropdownData from "../components/Dropdown/Dropdown";
 import { useQuery } from "react-query";
 import { getLifeData } from "../api/api";
 import { useToggle } from "@mantine/hooks";
+import { Loader } from "@mantine/core";
 
 const LifeView = () => {
     const [value, toggle] = useToggle();
@@ -16,14 +17,14 @@ const LifeView = () => {
     return (
         <>
             <Button variant="outline" fullWidth onClick={() => toggle()}>
-                Add Expense
+                Добави разход
             </Button>
             {isLoading && (
-                <Text size="xl" ta="center">
-                    Loading...
-                </Text>
+                <Center w="100%" pt={200}>
+                    <Loader m="auto" color="pink" />
+                </Center>
             )}
-            {isSuccess && <DropdownData data={data} />}
+            {isSuccess && <DropdownData dataType="life" data={data} />}
             <AddExpenseDrawer
                 drawerVisibility={value}
                 handleDrawerClose={toggle}
