@@ -26,7 +26,7 @@ export function WorkTable({ dayData, day, month }) {
     });
 
     return (
-        <Table fontSize={12} horizontalSpacing={10}>
+        <Table fontSize={13} horizontalSpacing={10}>
             <thead>
                 <tr>
                     <Th>
@@ -65,7 +65,7 @@ export function WorkTable({ dayData, day, month }) {
                                     loading={isLoading}
                                     style={{ alignSelf: "center" }}
                                 >
-                                    <IconTrash size={15} />
+                                    <IconTrash size={17} />
                                 </ActionIcon>
                             </Td>
                         </tr>

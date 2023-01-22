@@ -42,12 +42,12 @@ export function LifeTable({ dayData, day, month }) {
                             <Td>
                                 {dayData[key].movementType === "income" ? (
                                     <IconArrowUpCircle
-                                        size={15}
+                                        size={17}
                                         color="green"
                                     />
                                 ) : (
                                     <IconArrowDownCircle
-                                        size={15}
+                                        size={17}
                                         color="red"
                                     />
                                 )}
@@ -65,7 +65,7 @@ export function LifeTable({ dayData, day, month }) {
                                     loading={isLoading}
                                     style={{ alignSelf: "center" }}
                                 >
-                                    <IconTrash size={15} />
+                                    <IconTrash size={17} />
                                 </ActionIcon>
                             </Td>
                         </tr>

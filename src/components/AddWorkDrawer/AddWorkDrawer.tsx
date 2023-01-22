@@ -111,6 +111,7 @@ const AddWorkDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                         <NumberInput
                             placeholder="Добави стойност"
                             precision={2}
+                            decimalSeparator=","
                             step={0.1}
                             label="Стойност"
                             withAsterisk
@@ -122,6 +123,7 @@ const AddWorkDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                             placeholder="Добави бакшиш"
                             precision={2}
                             step={0.1}
+                            decimalSeparator=","
                             label="Бакшиш"
                             withAsterisk
                             icon={<IconPigMoney />}

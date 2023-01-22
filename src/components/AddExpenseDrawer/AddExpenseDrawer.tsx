@@ -123,6 +123,7 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
                             placeholder="Добави стойност"
                             precision={2}
                             step={0.1}
+                            decimalSeparator=","
                             label="Amount"
                             withAsterisk
                             icon={<IconCoin />}
