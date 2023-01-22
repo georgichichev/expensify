@@ -22,7 +22,7 @@ import { showNotification } from "@mantine/notifications";
 
 const successNotification = {
     title: "Успешно добавяне",
-    message: "Успешно добави нова трансакция.",
+    message: "Успешно добави ново движение.",
     color: "teal",
     icon: <IconCheck />,
 };
