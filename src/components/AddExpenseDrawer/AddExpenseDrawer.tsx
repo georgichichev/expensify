@@ -39,6 +39,7 @@ const AddExpenseDrawer = ({ drawerVisibility, handleDrawerClose }) => {
     const { mutate, isLoading } = useMutation(addMovement, {
         onSuccess: () => {
             showNotification(successNotification);
+            handleDrawerClose();
             form.reset();
         },
         onError: () => showNotification(rejectNotification),
