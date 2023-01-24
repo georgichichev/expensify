@@ -62,7 +62,9 @@ const AddWorkDrawer = ({ drawerVisibility, handleDrawerClose }) => {
             amount: (value) =>
                 value <= 0 ? "Стойността трябва да е по-голяма от 0." : null,
             tip: (value) =>
-                value < 0 ? "Бакшишът не може да е по-малък от  0." : null,
+                value < 0 || value === undefined
+                    ? "Бакшишът не може да е по-малък от  0."
+                    : null,
             client: (value) => value === "" && "Въведи име на клиент.",
         },
     });
